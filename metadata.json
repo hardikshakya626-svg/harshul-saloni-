@@ -1,0 +1,6 @@
+{
+  "name": "Harshul & Saloni Wedding Invitation",
+  "description": "Royal Indian wedding invitation for Harshul & Saloni in Gwalior with Mughal arches, traditional Devanagari typography, event details, and family blessings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

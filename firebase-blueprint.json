@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "Rsvp": {
+      "title": "Wedding RSVP & Blessing",
+      "description": "Guest RSVP submission and wedding blessings for Harshul & Saloni",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name or family name of the guest",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "guestCount": {
+          "type": "string",
+          "description": "Number of guests attending",
+          "enum": ["1", "2", "3", "4", "5+"]
+        },
+        "wishes": {
+          "type": "string",
+          "description": "Personal wedding wishes and blessings for the couple",
+          "maxLength": 1000
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when the RSVP was submitted"
+        }
+      },
+      "required": ["name", "guestCount", "createdAt"]
+    },
+    "HeroPhoto": {
+      "title": "Editorial Hero Photo",
+      "description": "Uploaded editorial photo for wedding invitation hero frame montage",
+      "type": "object",
+      "properties": {
+        "frameId": {
+          "type": "string",
+          "description": "Identifier for the frame slot (e.g. frame1, frame2, frame3, filmHero)"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Base64 data URL string of the photo",
+          "maxLength": 950000
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of the upload"
+        }
+      },
+      "required": ["frameId", "imageUrl", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/rsvps/{rsvpId}": {
+      "schema": "Rsvp",
+      "description": "Collection of wedding RSVP responses and blessings"
+    },
+    "/hero_photos/{frameId}": {
+      "schema": "HeroPhoto",
+      "description": "Collection of editorial hero photos persistent across client preview sessions"
+    }
+  }
+}

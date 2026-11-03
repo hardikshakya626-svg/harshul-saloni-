@@ -1,0 +1,302 @@
+@import "tailwindcss";
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+@layer utilities {
+  .font-hindi {
+    font-family: 'Noto Serif Devanagari', serif;
+  }
+  .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .font-english-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.18em;
+  }
+  .font-english-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .font-script {
+    font-family: 'Alex Brush', cursive;
+  }
+  .font-editorial {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .font-royal-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.22em;
+  }
+
+  /* Luminous inner frame glow as requested */
+  .luminous-frame-shadow {
+    box-shadow: 0 12px 36px -6px rgba(155, 18, 53, 0.28), 
+                0 4px 16px -2px rgba(201, 150, 43, 0.3),
+                0 0 12px 1px rgba(240, 206, 122, 0.45);
+  }
+
+  .gold-glow {
+    filter: drop-shadow(0 0 6px rgba(240, 206, 122, 0.65));
+  }
+}
+
+/* Tone-on-tone Indian damask floral pattern for crimson hero */
+.bg-crimson-damask {
+  background-color: #9B1235;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 232, 181, 0.04) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23680820' fill-opacity='0.42'%3E%3Cpath d='M40 0 C45 15, 60 15, 60 25 C60 35, 45 35, 40 40 C35 35, 20 35, 20 25 C20 15, 35 15, 40 0 Z' /%3E%3Cpath d='M40 80 C45 65, 60 65, 60 55 C60 45, 45 45, 40 40 C35 45, 20 45, 20 55 C20 65, 35 65, 40 80 Z' /%3E%3Ccircle cx='40' cy='40' r='5' /%3E%3Ccircle cx='0' cy='0' r='6' /%3E%3Ccircle cx='80' cy='0' r='6' /%3E%3Ccircle cx='0' cy='80' r='6' /%3E%3Ccircle cx='80' cy='80' r='6' /%3E%3Cpath d='M0 40 C10 35, 15 20, 25 20 C35 20, 35 35, 40 40 C35 45, 35 60, 25 60 C15 60, 10 45, 0 40 Z' /%3E%3Cpath d='M80 40 C70 35, 65 20, 55 20 C45 20, 45 35, 40 40 C45 45, 45 60, 55 60 C65 60, 70 45, 80 40 Z' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Tone-on-tone foliage pattern for dark green events band */
+.bg-green-damask {
+  background-color: #264A2E;
+  background-image: radial-gradient(circle at 50% 50%, rgba(240, 206, 122, 0.05) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2317331D' fill-opacity='0.5'%3E%3Cpath d='M30 10 C35 20, 45 25, 45 35 C45 45, 35 50, 30 50 C25 50, 15 45, 15 35 C15 25, 25 20, 30 10 Z' /%3E%3Cpath d='M10 30 C20 35, 25 45, 35 45 C45 45, 50 35, 50 30 C50 25, 45 15, 35 15 C25 15, 20 25, 10 30 Z' /%3E%3Ccircle cx='30' cy='30' r='3.5' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Tone-on-tone rose floral pattern for families section */
+.bg-rose-damask {
+  background-color: #B8486A;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 248, 231, 0.08) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%238C2A48' fill-opacity='0.42'%3E%3Cpath d='M36 6 C42 18, 54 18, 54 28 C54 38, 42 38, 36 44 C30 38, 18 38, 18 28 C18 18, 30 18, 36 6 Z' /%3E%3Cpath d='M36 66 C42 54, 54 54, 54 44 C54 34, 42 34, 36 28 C30 34, 18 34, 18 44 C18 54, 30 54, 36 66 Z' /%3E%3Ccircle cx='36' cy='36' r='4' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Tone-on-tone amber pattern for footer section */
+.bg-amber-damask {
+  background-color: #C0690A;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 248, 231, 0.09) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%238C4403' fill-opacity='0.45'%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%238C4403' stroke-width='2' stroke-opacity='0.4' /%3E%3Cpath d='M32 8 L36 24 L48 20 L40 32 L52 36 L36 40 L40 52 L32 44 L24 52 L28 40 L12 36 L24 32 L16 20 L28 24 Z' /%3E%3Ccircle cx='32' cy='32' r='4' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Tone-on-tone royal wine pattern for photo & mantra blessing section */
+.bg-wine-damask {
+  background-color: #520D27;
+  background-image: radial-gradient(circle at 50% 50%, rgba(240, 206, 122, 0.06) 0%, transparent 65%),
+    url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23360618' fill-opacity='0.55'%3E%3Cpath d='M35 5 C45 20, 55 20, 55 35 C55 50, 45 50, 35 65 C25 50, 15 50, 15 35 C15 20, 25 20, 35 5 Z' /%3E%3Ccircle cx='35' cy='35' r='6' /%3E%3Ccircle cx='0' cy='35' r='4' /%3E%3Ccircle cx='70' cy='35' r='4' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Deep royal maroon page textured background */
+.bg-maroon-canvas {
+  background-color: #4A0E2E;
+  background-image: radial-gradient(rgba(201, 150, 43, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Small-Sized Refined Texture: Royal Rose Pink with Micro-Linen & Delicate Pin-Dot Weave */
+.bg-rose-textured {
+  background-color: #B8486A;
+  background-image:
+    radial-gradient(ellipse at 50% 20%, rgba(255, 240, 209, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 15% 85%, rgba(240, 206, 122, 0.15) 0%, transparent 45%),
+    url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.65' fill='%235A0D26' fill-opacity='0.22'/%3E%3Ccircle cx='4' cy='4' r='0.65' fill='%23FFE8B5' fill-opacity='0.12'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4L4 0' stroke='%23FFE8B5' stroke-opacity='0.045' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: auto, auto, 6px 6px, 4px 4px;
+}
+
+/* Small-Sized Refined Texture: Soft Blush Pink with Micro-Khadi Paper Grain */
+.bg-blush-textured {
+  background-color: #FDF0F5;
+  background-image:
+    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.75) 0%, transparent 60%),
+    radial-gradient(circle at 85% 85%, rgba(184, 72, 106, 0.1) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.6' fill='%239B1235' fill-opacity='0.08'/%3E%3Ccircle cx='4' cy='4' r='0.6' fill='%23C46083' fill-opacity='0.08'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4L4 0' stroke='%239B1235' stroke-opacity='0.035' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: auto, auto, 6px 6px, 4px 4px;
+}
+
+html, body, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* Remove all visible scrollbar sliders across all browsers */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Gentle soft breeze lotus breathing and swaying animation */
+@keyframes lotusBreatheLeft {
+  0% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+  35% {
+    transform: rotate(1.2deg) scale(1.025) translateY(-2px);
+  }
+  70% {
+    transform: rotate(-0.8deg) scale(1.01) translateY(1px);
+  }
+  100% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+}
+
+@keyframes lotusBreatheRight {
+  0% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+  35% {
+    transform: rotate(-1.2deg) scale(1.025) translateY(-2px);
+  }
+  70% {
+    transform: rotate(0.8deg) scale(1.01) translateY(1px);
+  }
+  100% {
+    transform: rotate(0deg) scale(1) translateY(0);
+  }
+}
+
+/* Hanging gold temple bells soft breeze sway */
+@keyframes bellSwingLeft {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2.8deg);
+  }
+  50% {
+    transform: rotate(0.3deg);
+  }
+  75% {
+    transform: rotate(-2.4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes bellSwingRight {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2.8deg);
+  }
+  50% {
+    transform: rotate(-0.3deg);
+  }
+  75% {
+    transform: rotate(2.4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Gentle drifting petals across the warm opening */
+@keyframes petalDriftSoft {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(0.85);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-380px) translateX(45px) rotate(220deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes petalDriftSoftLeft {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(0.9);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-350px) translateX(-40px) rotate(-190deg) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes goldenAuraPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}
+
+.animate-lotus-left {
+  animation: lotusBreatheLeft 6s ease-in-out infinite alternate;
+  transform-origin: bottom left;
+}
+
+.animate-lotus-right {
+  animation: lotusBreatheRight 6.5s ease-in-out 0.6s infinite alternate;
+  transform-origin: bottom right;
+}
+
+.animate-bell-left {
+  animation: bellSwingLeft 5.2s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.animate-bell-right {
+  animation: bellSwingRight 5.6s ease-in-out 0.4s infinite;
+  transform-origin: top center;
+}
+
+.animate-petal-1 {
+  animation: petalDriftSoft 8s ease-in-out infinite;
+}
+
+.animate-petal-2 {
+  animation: petalDriftSoftLeft 9.5s ease-in-out 2.5s infinite;
+}
+
+.animate-petal-3 {
+  animation: petalDriftSoft 11s ease-in-out 5s infinite;
+}
+
+.animate-petal-4 {
+  animation: petalDriftSoftLeft 10s ease-in-out 7s infinite;
+}
+
+.animate-golden-aura {
+  animation: goldenAuraPulse 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-lotus-left,
+  .animate-lotus-right,
+  .animate-bell-left,
+  .animate-bell-right,
+  .animate-petal-1,
+  .animate-petal-2,
+  .animate-petal-3,
+  .animate-petal-4,
+  .animate-golden-aura {
+    animation: none !important;
+  }
+}

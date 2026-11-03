@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default-deny catch-all to prevent unintended access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidRsvp(data) {
+      return data.keys().hasAll(['name', 'guestCount', 'createdAt'])
+        && data.keys().hasOnly(['name', 'guestCount', 'wishes', 'createdAt'])
+        && data.name is string
+        && data.name.size() >= 1
+        && data.name.size() <= 120
+        && (data.guestCount in ['1', '2', '3', '4', '5+'])
+        && (!('wishes' in data) || (data.wishes is string && data.wishes.size() <= 1000))
+        && data.createdAt is string
+        && data.createdAt.size() <= 40;
+    }
+
+    function isValidHeroPhoto(data, frameId) {
+      return data.keys().hasAll(['frameId', 'imageUrl', 'updatedAt'])
+        && data.keys().hasOnly(['frameId', 'imageUrl', 'updatedAt'])
+        && data.frameId == frameId
+        && (data.frameId in ['frame1', 'frame2', 'frame3', 'filmHero'] || (data.frameId is string && data.frameId.size() >= 1 && data.frameId.size() <= 40 && data.frameId.matches('^[a-zA-Z0-9_\\-]+$')))
+        && data.imageUrl is string
+        && data.imageUrl.size() <= 950000
+        && data.updatedAt is string
+        && data.updatedAt.size() <= 40;
+    }
+
+    // Connection verification endpoint
+    match /test/{testId} {
+      allow get: if isValidId(testId);
+    }
+
+    // Wedding RSVP collection
+    match /rsvps/{rsvpId} {
+      // Allow reading individual RSVPs
+      allow get: if isValidId(rsvpId);
+      // Allow guests to submit their RSVP and blessings
+      allow create: if isValidId(rsvpId) && isValidRsvp(incoming());
+      // Prevent modifications or deletion of submitted RSVPs
+      allow update, delete: if false;
+    }
+
+    // Editorial hero photos persistent for client preview
+    match /hero_photos/{frameId} {
+      allow get, list: if isValidId(frameId);
+      allow create, update: if isValidId(frameId) && isValidHeroPhoto(incoming(), frameId);
+      allow delete: if isValidId(frameId);
+    }
+  }
+}
