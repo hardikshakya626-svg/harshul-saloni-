@@ -16,15 +16,17 @@ service cloud.firestore {
     }
 
     function isValidRsvp(data) {
-      return data.keys().hasAll(['name', 'guestCount', 'createdAt'])
-        && data.keys().hasOnly(['name', 'guestCount', 'wishes', 'createdAt'])
+      return data.keys().hasAll(['name', 'createdAt'])
         && data.name is string
         && data.name.size() >= 1
-        && data.name.size() <= 120
-        && (data.guestCount in ['1', '2', '3', '4', '5+'])
-        && (!('wishes' in data) || (data.wishes is string && data.wishes.size() <= 1000))
+        && data.name.size() <= 200
+        && (!('guestCount' in data) || (data.guestCount is string && data.guestCount.size() <= 20) || (data.guestCount is number))
+        && (!('phone' in data) || (data.phone is string && data.phone.size() <= 50))
+        && (!('address' in data) || (data.address is string && data.address.size() <= 500))
+        && (!('events' in data) || (data.events is list) || (data.events is string))
+        && (!('wishes' in data) || (data.wishes is string && data.wishes.size() <= 2000))
         && data.createdAt is string
-        && data.createdAt.size() <= 40;
+        && data.createdAt.size() <= 60;
     }
 
     function isValidHeroPhoto(data, frameId) {
@@ -44,13 +46,16 @@ service cloud.firestore {
     }
 
     // Wedding RSVP collection
+    match /rsvps {
+      allow read, get, list: if true;
+    }
     match /rsvps/{rsvpId} {
-      // Allow reading individual RSVPs
-      allow get: if isValidId(rsvpId);
-      // Allow guests to submit their RSVP and blessings
+      // Allow reading and listing RSVPs for guest portal
+      allow read, get, list: if true;
+      // Allow guests to submit their RSVP
       allow create: if isValidId(rsvpId) && isValidRsvp(incoming());
-      // Prevent modifications or deletion of submitted RSVPs
-      allow update, delete: if false;
+      // Allow admin portal to update or delete RSVPs
+      allow update, delete: if isValidId(rsvpId);
     }
 
     // Editorial hero photos persistent for client preview
